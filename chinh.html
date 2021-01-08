@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giảm giá</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <link rel="stylesheet" href="chinh.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+</head>
+
+<body>
+    <div class="container">
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+        <nav class="menu">
+            <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+            <label class="menu-open-button" for="menu-open">
+        <span class="hamburger hamburger-1"></span>
+        <span class="hamburger hamburger-2"></span>
+        <span class="hamburger hamburger-3"></span>
+      </label>
+
+            <a href="" class="menu-item" data-toggle="modal" data-target="#myModal"><i class="fas fa-balance-scale"></i></a>
+            <a href="" class="menu-item" data-toggle="modal" data-target="#myModal2"> <i class="fas fa-dragon"></i></a>
+            <a href="" class="menu-item" data-toggle="modal" data-target="#myModal4"> <i class="fas fa-dollar-sign"></i> </a>
+            <a href="" class="menu-item" data-toggle="modal" data-target="#myModal6"> <i class="fab fa-amazon-pay"></i> </a>
+            <a href="#" class="menu-item"> <i class="fa fa-cog"></i> </a>
+            <a href="#" class="menu-item"> <i class="fa fa-ellipsis-h"></i> </a>
+
+        </nav>
+
+
+        <!-- filters -->
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+          <filter id="shadowed-goo">
+              
+              <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+              <feGaussianBlur in="goo" stdDeviation="3" result="shadow" />
+              <feColorMatrix in="shadow" mode="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 -0.2" result="shadow" />
+              <feOffset in="shadow" dx="1" dy="1" result="shadow" />
+              <feComposite in2="shadow" in="goo" result="goo" />
+              <feComposite in2="goo" in="SourceGraphic" result="mix" />
+          </filter>
+          <filter id="goo">
+              <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10" />
+              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+              <feComposite in2="goo" in="SourceGraphic" result="mix" />
+          </filter>
+        </defs>
+    </svg>
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <form id="xoa" class="div3">
+                            <h2>Tính sản phẩm giảm giá</h2>
+                            <label for="tensanpham">Tên sản phẩm </label><br>
+                            <input type="text" id="txttensanpham" value=""><br>
+                            <label for="giatien">Giá tiền</label><br>
+                            <input type="number" id="txtgiatien" value=""><br>
+                            <label for="giamgia">Giảm giá</label><br>
+                            <input type="number" id="txtgiamgia" readonly><br>
+                            <input type="range" min="0" max="100" value="0" class="slider" id="myRange"></form>
+                        <img src="https://i.pinimg.com/originals/72/48/62/724862d06dfbb69beb0f21e4285d3575.gif" id="anh">
+
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" onclick="myFunctiongiamgia()">Gửi</button>
+                            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" onclick="lammoi()">Làm mới</button>
+                            <button type="button" class="btn btn-info btn-lg" data-dismiss="modal" onclick="thoat()">Thoát</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <form id="xoa1" class="div3">
+                            <h2>Tính số sản phẩm đã bán ra</h2>
+                            <label for="tensanpham">Tên sản phẩm </label><br>
+                            <input type="text" id="txttensanpham1" value=""><br>
+                            <label for="giatien">Tổng sản phẩm</label><br>
+                            <input type="number" id="txttongsanpham" value=""><br>
+                            <label for="giamgia">Tổng sản phẩm tồn kho</label><br>
+                            <input type="number" id="txttonkho" value=""><br></form>
+                        <img src="https://i.pinimg.com/originals/72/48/62/724862d06dfbb69beb0f21e4285d3575.gif" id="anh">
+
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal3" onclick="myFunctionbanra()">Gửi</button>
+                            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" onclick="lammoi()">Làm mới</button>
+                            <button type="button" class="btn btn-info btn-lg" data-dismiss="modal" onclick="thoat()">Thoát</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal3" role="dialog">
+            <div class="modal-dialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="titleName"></h4>
+                    </div>
+                    <div class="modal-bodyx">
+                        <p id='content'></p>
+                        <h3 class="modal-title" style="display: inline-flex;">Tên sản phẩm:
+                            <p id="gettxttensanpham1"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Tổng sản phẩm:
+                            <p class="modal-title" id="gettxttongsanpham"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Tổng sản phẩm tồn kho:
+                            <p class="modal-title" id="gettxttonkho"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Số sản phẩm đã bán ra là:
+                            <p class="modal-title" id="getvaluetotalScore"></p>
+                        </h3> <br>
+                        <canvas id="myChart" width="400" height="400"></canvas>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal4" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h2>Tính lãi tiền gửi</h2>
+                        <form id="xoa2" class="div3" autocomplete="off">
+                            <label for="tenkhachhang">Tên khách hàng</label>
+                            <input type="text" id="txttenkhachhang" value=""><br>
+                            <label for="sotiengui">Số tiền gửi </label><br>
+                            <input type="number" id="txtsotiengui" value=""><br>
+                            <label for="kyhangui">Kỳ hạn gửi</label>
+                            <select id="txtkyhangui">
+        <option value="6">6 tháng</option>
+        <option value="12">12 tháng</option>
+        <option value="18">18 tháng</option>
+        <option value="24">24 tháng</option>
+        <option value="36">36 tháng</option>
+        <option value="60">60 tháng</option>
+    </select><br>
+                            <label for="laisuat">Lãi suất tiền gửi</label><br>
+                            <input type="number" id="txtlaisuat" value=""><br></form>
+                        <img src="https://i.pinimg.com/originals/72/48/62/724862d06dfbb69beb0f21e4285d3575.gif" id="anh">
+
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal5" onclick="myFunctionlaigui()">Gửi</button>
+                            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" onclick="lammoi()">Làm mới</button>
+                            <button type="button" class="btn btn-info btn-lg" data-dismiss="modal" onclick="thoat()">Thoát</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="modal fade" id="myModal5" role="dialog">
+            <div class="modal-dialog">
+
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="titleName"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id='content'></p>
+                        <h3 class="modal-title" style="display: inline-flex;">Tên khách hàng:
+                            <p class="modal-title" id="gettxttenkhachhang"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Số tiền gửi:
+                            <p class="modal-title" id="gettxtsotiengui"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Kỳ hạn gửi:
+                            <p class="modal-title" id="gettxtkyhangui"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Lãi xuất tiền gửi:
+                            <p class="modal-title" id="gettxtlaisuat"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Tiền lãi hàng tháng là:
+                            <p class="modal-title" id="getvaluetotalScore1"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Tổng số tiền sau kỳ hạn là:
+                            <p class="modal-title" id="getvalueketthuc"></p>
+                        </h3> <br>
+                        <canvas id="myChart1" width="400" height="400"></canvas>
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div> -->
+        <div class="modal fade" id="myModal6" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <form id="xoa3" class="div3">
+                            <h2>Tính lãi suất cố định khi vay ngân hàng</h2>
+                            <label for="nguoivay">Tên người vay</label></br>
+                            <input type="text" id="txtnguoivay" value="" placeholder="Nhập tên người vay"></br>
+                            <label for="sotienvay">Số tiền cần vay là </label><br>
+                            <input type="number" id="txtsotienvay" value="" placeholder="Số tiền cần vay"><br>
+                            <label for="kyhanvay">Kỳ hạn vay</label>
+                            <select id="txtkyhanvay" placeholder="Nhập kỳ hạn vay">
+            <option value="6">6 tháng</option>
+            <option value="12">12 tháng</option>
+            <option value="18">18 tháng</option>
+            <option value="24">24 tháng</option>
+            <option value="36">36 tháng</option>
+            <option value="60">60 tháng</option>
+        </select><br>
+                            <label for="laivay">Lãi suất tiền vay</label><br>
+                            <input type="number" id="txtlaivay" value="" placeholder="Nhập lãi xuất vay"><br></form>
+                        <img src="https://i.pinimg.com/originals/72/48/62/724862d06dfbb69beb0f21e4285d3575.gif" id="anh">
+                        <div class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal7" onclick="myFunctionlaivay()">Gửi</button>
+                            <button type="button" class="btn btn-danger btn-lg" data-toggle="modal" onclick="lammoi()">Làm mới</button>
+                            <button type="button" class="btn btn-info btn-lg" data-dismiss="modal" onclick="thoat()">Thoát</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal7" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="titleName"></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p id='content'></p>
+                        <h3 class="modal-title" style="display: inline-flex;">Tên người vay:
+                            <p id="gettxtnguoivay"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Số tiền cần vay:
+                            <p id="gettxtsotienvay"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Kỳ hạn vay:
+                            <p class="modal-title" id="gettxtkyhanvay"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Lãi xuất khi vay:
+                            <p class="modal-title" id="gettxtlaivay"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Lãi suất hàng tháng:
+                            <p class="modal-title" id="getvaluelaihangthang"></p>
+                        </h3> <br>
+                        <h3 class="modal-title" style="display: inline-flex;">Số tiền lãi phải trả hàng tháng là:
+                            <p class="modal-title" id="getvaluetotalScore2"></p>
+                        </h3> <br>
+                        <canvas id="myChart" width="400" height="400"></canvas>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Thoát</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="chinh.js"></script>
+
+</html>
